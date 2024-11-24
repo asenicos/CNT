@@ -39,7 +39,7 @@ class Experiment:
        experiment_info = {'Subid': '', 'Age': '', 'Experiment Version': 1,
                        'Sex': ['Male', 'Female'],
                        'Language': ['English', 'Swedish', 'Russian'], u'date':
-                           data.getDateStr(format="%Y-%m-%d_%H:%M"),'Inversion':['No', 'Yes']}
+                           data.getDateStr(format="%Y-%m-%d_%H:%M"),'Inversion':['No', 'Yes'],'Trial':''}
 
        info_dialog = gui.DlgFromDict(title='Color Naming Test', dictionary=experiment_info,
                                   fixed=['Experiment Version'])
@@ -75,7 +75,7 @@ if __name__ == "__main__":
     settings = experiment.settings()
     #language = settings['Language']
     inversion = settings['Inversion']
-    
+        
     # Create a window
     win = visual.Window(fullscr=True, color=(255, 255, 255), colorSpace='rgb255')
 
@@ -145,11 +145,17 @@ if __name__ == "__main__":
             'subid': settings['Subid'],
             'age': settings['Age'],
             'sex': settings['Sex'],
-            "date": settings['date']
+            "date": settings['date'],
+            'Trial': settings['Trial']
         })
 
         # Clear the screen before the next stimulus
         win.flip()
+        
+        # Move the mouse cursor to the fixation point
+        fixation_pos = (0, 0)  # Center of the screen
+        event.Mouse(win=win).setPos(fixation_pos)
+        
         core.wait(1)
 
 # Close the window and save results to a CSV file
