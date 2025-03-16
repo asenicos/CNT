@@ -163,6 +163,6 @@ win.close()
 
 # Create DataFrame and save to CSV
 df = pd.DataFrame(results)
-if os.path.isfile('color_selection_results.csv') : df.to_csv('color_selection_results.csv', mode='a', header=False, index=False)
-else : df.to_csv('color_selection_results.csv', mode='a', header=True, index=False)
+if os.path.isfile('color_selection_results.csv') : df.to_csv('color_selection_results.csv', mode='a', header=False, index=False, sep=";")
+else : df.to_csv('color_selection_results.csv', mode='a', header=True, index=False, sep=";")
 print("Results saved to color_selection_results.csv")
