@@ -43,7 +43,7 @@ class Experiment:
 
        info_dialog = gui.DlgFromDict(title='Color Naming Test', dictionary=experiment_info,
                                   fixed=['Experiment Version'])
-       experiment_info[u'DataFile'] = u'Data' + os.path.sep + u'stroop.csv'
+       experiment_info[u'DataFile'] = u'Data' + os.path.sep + u'CNT_results.csv'
 
        if info_dialog.OK:
         return experiment_info
@@ -163,5 +163,6 @@ win.close()
 
 # Create DataFrame and save to CSV
 df = pd.DataFrame(results)
-df.to_csv('color_selection_results.csv', index=False)
+if os.path.isfile('color_selection_results.csv') : df.to_csv('color_selection_results.csv', mode='a', header=False, index=False)
+else : df.to_csv('color_selection_results.csv', mode='a', header=True, index=False)
 print("Results saved to color_selection_results.csv")
